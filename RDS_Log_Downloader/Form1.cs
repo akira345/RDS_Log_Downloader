@@ -95,7 +95,6 @@ namespace RDS_Log_Downloader
 
         private void button2_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrEmpty(Txt_instance_name.Text))
             {
                 MessageBox.Show("RDSインスタンス名を入れてください。", "エラー",
@@ -148,7 +147,6 @@ namespace RDS_Log_Downloader
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     Txt_msg.Text = "システムエラー発生";
-                    return;
                 }
                 catch (Amazon.RDS.AmazonRDSException ex)
                 {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(config));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Btn_Save = new System.Windows.Forms.Button();
@@ -87,6 +88,7 @@
             this.Controls.Add(this.Btn_Save);
             this.Controls.Add(this.Txt_AWS_SecretKey);
             this.Controls.Add(this.Txt_AWS_AccessKey);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "config";
             this.Text = "config";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.config_FormClosing);
