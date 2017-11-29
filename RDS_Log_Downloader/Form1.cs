@@ -97,7 +97,22 @@ namespace RDS_Log_Downloader
             AWSCredentials awsCredentials;
             if (chain.TryGetAWSCredentials(AWS_PROFILE_NAME, out awsCredentials))
             {
-                MessageBox.Show("取得開始します。");
+                //ログ出力先に書き込めるかチェック
+                if (!chk_write(log_base_path))
+                {
+                    return;
+                }
+
+                //読み込みOK
+                DialogResult ret = MessageBox.Show("取得開始します。", "確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                if (ret == DialogResult.Cancel)
+                {
+                    return;
+                }
+                button1.Enabled = false;
+                button2.Enabled = false;
+                Btn_Regist_Key.Enabled = false;
+                Txt_msg.Text = "ログデータ取得中！！";
                 try
                 {
                     CredentialProfile profile;
@@ -107,6 +122,7 @@ namespace RDS_Log_Downloader
                     rds.db_instance_identifier = Txt_instance_name.Text;
                     rds.log_base_path = log_base_path;
                     rds.get_logs();
+                    Txt_msg.Text = "ログデータ取得完了！！";
                     MessageBox.Show("取得完了しました。");
                 }
                 catch (Amazon.RDS.Model.DBInstanceNotFoundException ex)
@@ -114,9 +130,23 @@ namespace RDS_Log_Downloader
                     MessageBox.Show("RDSインスタンスが存在しません：" + Environment.NewLine + ex.Message, "エラー",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
+                    Txt_msg.Text = "システムエラー発生";
                     return;
                 }
-
+                catch (Amazon.RDS.AmazonRDSException ex)
+                {
+                    MessageBox.Show("RDSインスタンス名が不正です。：" + Environment.NewLine + ex.Message, "エラー",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    Txt_msg.Text = "システムエラー発生";
+                }
+                finally
+                {
+                    button1.Enabled = Enabled;
+                    button2.Enabled = Enabled;
+                    Btn_Regist_Key.Enabled = Enabled;
+                }
+                return;
             }
             else
             {
@@ -128,7 +158,7 @@ namespace RDS_Log_Downloader
         /// 指定したディレクトリに書き込みができるかチェック
         /// </summary>
         /// <param name="write_path"></param>
-        private void chk_write(string write_path)
+        private bool chk_write(string write_path)
         {
             try
             {
@@ -137,6 +167,8 @@ namespace RDS_Log_Downloader
                     string name = Path.GetRandomFileName();
                     File.WriteAllText(write_path + "\\" + name, "test");
                     File.Delete(write_path + "\\" + name);
+                    Directory.CreateDirectory(write_path + "\\" + name);
+                    Directory.Delete(write_path + "\\" + name);
                     //問題なければパスの設定を保存する。
                     Properties.Settings.Default.last_save_path = write_path;
                     Properties.Settings.Default.Save();
@@ -151,15 +183,16 @@ namespace RDS_Log_Downloader
                 MessageBox.Show("アクセス権がありません。" + Environment.NewLine + "Access to the directory " + write_path + " is not permitted", "エラー",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                return;
+                return false;
             }
             catch (DirectoryNotFoundException ex)
             {
                 MessageBox.Show("ディレクトリが存在しません。" + Environment.NewLine + ex.Message, "エラー",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                return;
+                return false;
             }
+            return true;
 
         }
         /// <summary>
