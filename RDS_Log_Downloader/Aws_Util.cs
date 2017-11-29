@@ -40,7 +40,7 @@ namespace RDS_Log_Downloader
 
                 //ディレクトリ作成
                 string str_timestamp = dt_timestamp.ToString("yyyyMMdd");
-                string log_path = log_base_path + "\\" + str_timestamp + "\\";
+                string log_path = log_base_path + "\\" + db_instance_identifier + "\\" + str_timestamp + "\\";
                 if (!Directory.Exists(log_path))
                 {
                     Directory.CreateDirectory(log_path);
