@@ -51,6 +51,16 @@ namespace RDS_Log_Downloader
             {
                 MessageBox.Show("AWSへ接続に必要なアクセスキー、シークレットキーを設定してください。");
             }
+            if (string.IsNullOrEmpty(Properties.Settings.Default.instance_id))
+            {
+                //インスタンスIDの初期値は空
+                Txt_instance_name.Text = "";
+            }
+            else
+            {
+                //前回起動時の値を取得
+                Txt_instance_name.Text = Properties.Settings.Default.instance_id;
+            }
 
         }
         private string log_base_path;
@@ -122,6 +132,12 @@ namespace RDS_Log_Downloader
                     rds.db_instance_identifier = Txt_instance_name.Text;
                     rds.log_base_path = log_base_path;
                     rds.get_logs();
+
+                    //問題なければ設定を保存する。
+                    Properties.Settings.Default.last_save_path = log_base_path;
+                    Properties.Settings.Default.instance_id = Txt_instance_name.Text;
+
+                    Properties.Settings.Default.Save();
                     Txt_msg.Text = "ログデータ取得完了！！";
                     MessageBox.Show("取得完了しました。");
                 }
