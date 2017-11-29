@@ -8,12 +8,21 @@ namespace RDS_Log_Downloader
 {
     public partial class Form1 : Form
     {
+
         //アクセスキーを識別するAWSプロファイル名
         private const string AWS_PROFILE_NAME = "RDS_Log_Downloader_Profile";
 
         public Form1()
         {
             InitializeComponent();
+
+            //大きさ固定
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            //フォームが最大化されないようにする
+            this.MaximizeBox = false;
+            //フォームが最小化されないようにする
+            this.MinimizeBox = false;
+
             Txt_instance_name.Text = "";
             Txt_log_path.Text = "";
 

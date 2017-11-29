@@ -14,6 +14,13 @@ namespace RDS_Log_Downloader
 
             InitializeComponent();
 
+            //大きさ固定
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            //フォームが最大化されないようにする
+            this.MaximizeBox = false;
+            //フォームが最小化されないようにする
+            this.MinimizeBox = false;
+
             // 参考:http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-config-creds.html
             // プロファイルを読み込む
             var chain = new CredentialProfileStoreChain();
