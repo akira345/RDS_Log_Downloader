@@ -25,6 +25,7 @@ namespace RDS_Log_Downloader
 
             Txt_instance_name.Text = "";
             Txt_log_path.Text = "";
+            Txt_msg.Text = "";
 
             //設定を読み込む
             if (string.IsNullOrEmpty(Properties.Settings.Default.last_save_path))
