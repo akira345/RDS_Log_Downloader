@@ -2,6 +2,8 @@
 using Amazon.RDS;
 using Amazon.RDS.Model;
 using System.IO;
+using Amazon.Runtime;
+using Amazon;
 
 namespace RDS_Log_Downloader
 {
@@ -12,11 +14,10 @@ namespace RDS_Log_Downloader
         public string db_instance_identifier { get; set; }
         public string log_base_path { get; set; }
 
-        public Aws_Util()
+        public Aws_Util(AWSCredentials awsCredentials, RegionEndpoint region)
         {
             //クライアント起動
-            var config = System.Configuration.ConfigurationManager.AppSettings;
-            rds_client = new AmazonRDSClient(config.Get("AWSAccessKey"), config.Get("AWSSecretKey"), Amazon.RegionEndpoint.APNortheast1);
+            rds_client = new AmazonRDSClient(awsCredentials, region);
         }
         /// <summary>
         /// RDSからログファイルを取得し、保存します。

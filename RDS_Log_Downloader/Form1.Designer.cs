@@ -34,6 +34,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.Txt_instance_name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Btn_Regist_Key = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -80,11 +81,22 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "RDSインスタンス名";
             // 
+            // Btn_Regist_Key
+            // 
+            this.Btn_Regist_Key.Location = new System.Drawing.Point(441, 58);
+            this.Btn_Regist_Key.Name = "Btn_Regist_Key";
+            this.Btn_Regist_Key.Size = new System.Drawing.Size(88, 23);
+            this.Btn_Regist_Key.TabIndex = 6;
+            this.Btn_Regist_Key.Text = "AWSキー登録";
+            this.Btn_Regist_Key.UseVisualStyleBackColor = true;
+            this.Btn_Regist_Key.Click += new System.EventHandler(this.Btn_Regist_Key_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(562, 211);
+            this.Controls.Add(this.Btn_Regist_Key);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Txt_instance_name);
             this.Controls.Add(this.button2);
@@ -108,6 +120,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox Txt_instance_name;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button Btn_Regist_Key;
     }
 }
 

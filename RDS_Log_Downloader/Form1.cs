@@ -1,11 +1,16 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using Amazon.Runtime;
+using Amazon.Runtime.CredentialManagement;
 
 namespace RDS_Log_Downloader
 {
     public partial class Form1 : Form
     {
+        //アクセスキーを識別するAWSプロファイル名
+        private const string AWS_PROFILE_NAME = "RDS_Log_Downloader_Profile";
+
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +30,18 @@ namespace RDS_Log_Downloader
                 log_base_path = Properties.Settings.Default.last_save_path;
             }
             Txt_log_path.Text = log_base_path;
+
+            //プロファイルから情報を読む
+            var chain = new CredentialProfileStoreChain();
+            AWSCredentials awsCredentials;
+            if (chain.TryGetAWSCredentials(AWS_PROFILE_NAME, out awsCredentials))
+            {
+                //読み込みOK
+            }
+            else
+            {
+                MessageBox.Show("AWSへ接続に必要なアクセスキー、シークレットキーを設定してください。");
+            }
 
         }
         private string log_base_path;
@@ -66,22 +83,37 @@ namespace RDS_Log_Downloader
                     MessageBoxIcon.Error);
                 return;
             }
-            MessageBox.Show("取得開始します。");
-            try
+            //プロファイルから情報を読む
+            var chain = new CredentialProfileStoreChain();
+            AWSCredentials awsCredentials;
+            if (chain.TryGetAWSCredentials(AWS_PROFILE_NAME, out awsCredentials))
             {
-                Aws_Util rds = new Aws_Util();
-                rds.db_instance_identifier = Txt_instance_name.Text;
-                rds.log_base_path = log_base_path;
-                rds.get_logs();
+                MessageBox.Show("取得開始します。");
+                try
+                {
+                    CredentialProfile profile;
+                    chain.TryGetProfile(AWS_PROFILE_NAME, out profile);
+
+                    Aws_Util rds = new Aws_Util(awsCredentials, profile.Region);
+                    rds.db_instance_identifier = Txt_instance_name.Text;
+                    rds.log_base_path = log_base_path;
+                    rds.get_logs();
+                    MessageBox.Show("取得完了しました。");
+                }
+                catch (Amazon.RDS.Model.DBInstanceNotFoundException ex)
+                {
+                    MessageBox.Show("RDSインスタンスが存在しません：" + Environment.NewLine + ex.Message, "エラー",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+
             }
-            catch (Amazon.RDS.Model.DBInstanceNotFoundException ex)
+            else
             {
-                MessageBox.Show("RDSインスタンスが存在しません：" + Environment.NewLine + ex.Message, "エラー",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show("AWSへ接続に必要なアクセスキー、シークレットキーを設定してください。");
                 return;
             }
-            MessageBox.Show("取得完了しました。");
         }
         /// <summary>
         /// 指定したディレクトリに書き込みができるかチェック
@@ -121,7 +153,16 @@ namespace RDS_Log_Downloader
             }
 
         }
-
-
+        /// <summary>
+        /// AWSキー登録ボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_Regist_Key_Click(object sender, EventArgs e)
+        {
+            config config_form = new config(AWS_PROFILE_NAME);
+            config_form.ShowDialog();
+            config_form.Dispose();
+        }
     }
 }
