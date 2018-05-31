@@ -35,7 +35,7 @@
             this.Txt_instance_name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Btn_Regist_Key = new System.Windows.Forms.Button();
-            this.Txt_msg = new System.Windows.Forms.TextBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // button1
@@ -58,7 +58,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(40, 112);
+            this.button2.Location = new System.Drawing.Point(40, 143);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(476, 61);
             this.button2.TabIndex = 2;
@@ -92,23 +92,19 @@
             this.Btn_Regist_Key.UseVisualStyleBackColor = true;
             this.Btn_Regist_Key.Click += new System.EventHandler(this.Btn_Regist_Key_Click);
             // 
-            // Txt_msg
+            // progressBar1
             // 
-            this.Txt_msg.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Txt_msg.Font = new System.Drawing.Font("MS UI Gothic", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.Txt_msg.ForeColor = System.Drawing.Color.Crimson;
-            this.Txt_msg.Location = new System.Drawing.Point(40, 186);
-            this.Txt_msg.Name = "Txt_msg";
-            this.Txt_msg.ReadOnly = true;
-            this.Txt_msg.Size = new System.Drawing.Size(476, 55);
-            this.Txt_msg.TabIndex = 7;
+            this.progressBar1.Location = new System.Drawing.Point(40, 100);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(476, 23);
+            this.progressBar1.TabIndex = 8;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 253);
-            this.Controls.Add(this.Txt_msg);
+            this.ClientSize = new System.Drawing.Size(562, 226);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.Btn_Regist_Key);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Txt_instance_name);
@@ -120,7 +116,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "RDSログダウンローダVer1.0";
+            this.Text = "RDSログダウンローダVer2.0";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,7 +130,7 @@
         private System.Windows.Forms.TextBox Txt_instance_name;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Btn_Regist_Key;
-        private System.Windows.Forms.TextBox Txt_msg;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

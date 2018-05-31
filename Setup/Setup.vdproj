@@ -58,7 +58,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3B3748500A80403F89337A1D8408BB7B"
+        "OwnerKey" = "8:_A5C69B7F543D89F1B566D58BEC21B011"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,7 +70,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A5C69B7F543D89F1B566D58BEC21B011"
+        "OwnerKey" = "8:_3B3748500A80403F89337A1D8408BB7B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -91,6 +91,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -107,6 +115,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -143,11 +159,6 @@
             "AssemblyAsmDisplayName" = "8:AWSSDK.RDS, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_5BDC28294AED899640FC8400B0A78B89"
-                    {
-                    "Name" = "8:AWSSDK.RDS.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:AWSSDK.RDS.dll"
             "TargetName" = "8:"
@@ -174,11 +185,6 @@
             "AssemblyAsmDisplayName" = "8:AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_A5C69B7F543D89F1B566D58BEC21B011"
-                    {
-                    "Name" = "8:AWSSDK.Core.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:AWSSDK.Core.dll"
             "TargetName" = "8:"
@@ -225,11 +231,6 @@
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_FA3E48697328D7B6C9ADF43FC0232CE2"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
@@ -316,15 +317,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:RDS Log Downloader"
-        "ProductCode" = "8:{7B69E8C1-20C8-4BA2-86E0-BEC8F6FBBB8B}"
-        "PackageCode" = "8:{1F6AD7D1-378C-46E7-9105-2FA53D0828B8}"
+        "ProductCode" = "8:{D75C2BF2-FCDA-43AA-9D42-351EBD343B11}"
+        "PackageCode" = "8:{84CEC23B-605A-4A95-B968-92F69F16744B}"
         "UpgradeCode" = "8:{4D5CCC45-3549-449F-BD25-7269A0DEBE43}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:2.0.0"
         "Manufacturer" = "8:Akira345"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
