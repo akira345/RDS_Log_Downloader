@@ -4,8 +4,6 @@ using Amazon.RDS.Model;
 using System.IO;
 using Amazon.Runtime;
 using Amazon;
-using System.Collections.Generic;
-
 
 namespace RDS_Log_Downloader
 {
@@ -15,7 +13,6 @@ namespace RDS_Log_Downloader
 
         public string db_instance_identifier { get; set; }
         public string log_base_path { get; set; }
-        public List<Rdslogattr> rdslogattr = new List<Rdslogattr>();
 
         public Aws_Util(AWSCredentials awsCredentials, RegionEndpoint region)
         {
@@ -23,10 +20,11 @@ namespace RDS_Log_Downloader
             rds_client = new AmazonRDSClient(awsCredentials, region);
         }
         /// <summary>
-        /// RDSからログファイルとその属性一覧を取得します。
+        /// RDSからログファイルを取得し、保存します。
         /// </summary>
-        public void setRdsLogAttr()
+        public void get_logs()
         {
+
             //ファイル名一覧取得
             DescribeDBLogFilesRequest request = new DescribeDBLogFilesRequest();
             DescribeDBLogFilesResponse ret;
@@ -40,13 +38,34 @@ namespace RDS_Log_Downloader
                 var timestamp = log.LastWritten / 1000;
                 DateTime dt_timestamp = UnixTime.FromUnixTime(timestamp);//POSIXからDateTimeに変換
 
+                //ディレクトリ作成
+                string str_timestamp = dt_timestamp.ToString("yyyyMMdd");
+                string log_path = log_base_path + "\\" + db_instance_identifier + "\\" + str_timestamp + "\\";
+                if (!Directory.Exists(log_path))
+                {
+                    Directory.CreateDirectory(log_path);
+                }
+
                 //余計なファイルを除外
                 if (log.LogFileName == "mysqlUpgrade")
                 {
                     continue;
                 }
+
+                //ファイル名はslowquery/mysql-slowquery.logのような形式なので、ファイル名だけ抜き出す。
+                string log_file_name = log_path + log.LogFileName.Split('/')[1];
+                Console.WriteLine(log_file_name);//for debug...
+
+                //一旦ファイル削除(上書きする為)
+                if (File.Exists(log_file_name))
+                {
+                    File.Delete(log_file_name);
+                }
+
                 //ログファイルの中身取得
-                rdslogattr.Add(new Rdslogattr { download_log_file_name = log.LogFileName, dt_timestamp = dt_timestamp });
+                {
+                    get_log_data(log.LogFileName, log_file_name, dt_timestamp);
+                }
             }
         }
 
@@ -56,7 +75,7 @@ namespace RDS_Log_Downloader
         /// <param name="download_log_file_name">RDSからダウンロードするファイル名</param>
         /// <param name="save_log_file_name">保存するログファイル名</param>
         /// <param name="dt_timestamp">ログファイルにセットするタイムスタンプ</param>
-        public void get_log_data(string download_log_file_name, string save_log_file_name, DateTime dt_timestamp)
+        private void get_log_data(string download_log_file_name, string save_log_file_name, DateTime dt_timestamp)
         {
             bool additional_data_pending = true;//続きのデータがあるかのフラグ
             string marker = "0:0";//取得するデータの区切り文字

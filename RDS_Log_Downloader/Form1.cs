@@ -1,8 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Amazon.Runtime;
 using Amazon.Runtime.CredentialManagement;
@@ -28,6 +25,7 @@ namespace RDS_Log_Downloader
 
             Txt_instance_name.Text = "";
             Txt_log_path.Text = "";
+            Txt_msg.Text = "";
 
             //設定を読み込む
             if (string.IsNullOrEmpty(Properties.Settings.Default.last_save_path))
@@ -95,7 +93,7 @@ namespace RDS_Log_Downloader
             }
         }
 
-        private async void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(Txt_instance_name.Text))
             {
@@ -124,7 +122,7 @@ namespace RDS_Log_Downloader
                 button1.Enabled = false;
                 button2.Enabled = false;
                 Btn_Regist_Key.Enabled = false;
-
+                Txt_msg.Text = "ログデータ取得中！！";
                 try
                 {
                     CredentialProfile profile;
@@ -133,23 +131,14 @@ namespace RDS_Log_Downloader
                     Aws_Util rds = new Aws_Util(awsCredentials, profile.Region);
                     rds.db_instance_identifier = Txt_instance_name.Text;
                     rds.log_base_path = log_base_path;
-                    //RDSログファイル名一覧取得
-                    rds.setRdsLogAttr();
-
-                    progressBar1.Value = 0;
-                    // Progressクラスのインスタンスを生成
-                    var p = new Progress<int>(ShowProgress);
-                    await Task.Run(() => DownloadRdsLogFiles(rds,p, rds.rdslogattr.Count()));
-                    // 処理結果の表示
-                    progressBar1.Text = "ログデータ取得完了！！";
-                    progressBar1.Value = 100;
+                    rds.get_logs();
 
                     //問題なければ設定を保存する。
                     Properties.Settings.Default.last_save_path = log_base_path;
                     Properties.Settings.Default.instance_id = Txt_instance_name.Text;
 
                     Properties.Settings.Default.Save();
-
+                    Txt_msg.Text = "ログデータ取得完了！！";
                     MessageBox.Show("取得完了しました。");
                 }
                 catch (Amazon.RDS.Model.DBInstanceNotFoundException ex)
@@ -157,14 +146,14 @@ namespace RDS_Log_Downloader
                     MessageBox.Show("RDSインスタンスが存在しません：" + Environment.NewLine + ex.Message, "エラー",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-
+                    Txt_msg.Text = "システムエラー発生";
                 }
                 catch (Amazon.RDS.AmazonRDSException ex)
                 {
                     MessageBox.Show("RDSインスタンス名が不正です。：" + Environment.NewLine + ex.Message, "エラー",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-
+                    Txt_msg.Text = "システムエラー発生";
                 }
                 finally
                 {
@@ -231,49 +220,6 @@ namespace RDS_Log_Downloader
             config config_form = new config(AWS_PROFILE_NAME);
             config_form.ShowDialog();
             config_form.Dispose();
-        }
-        /// <summary>
-        /// RDSログファイルをダウンロードします。
-        /// </summary>
-        /// <param name="rds"></param>
-        /// <param name="progress"></param>
-        /// <param name="n"></param>
-        private void DownloadRdsLogFiles(Aws_Util rds,IProgress<int> progress, int n)
-        {
-            int i=0;
-            ParallelOptions options = new ParallelOptions();
-            options.MaxDegreeOfParallelism = 8;//同時8スレッド
-            Parallel.ForEach(rds.rdslogattr,options, (current_rds_log) => {
-                //進捗率カウントアップ
-                Interlocked.Increment(ref i);
-                //ディレクトリ作成
-                string str_timestamp = current_rds_log.dt_timestamp.ToString("yyyyMMdd");
-                string log_path = log_base_path + "\\" + str_timestamp + "\\";
-                if (!Directory.Exists(log_path))
-                {
-                    Directory.CreateDirectory(log_path);
-                }
-                //ファイル名はslowquery/mysql-slowquery.logのような形式なので、ファイル名だけ抜き出す。
-                string log_file_name = log_path + current_rds_log.download_log_file_name.Split('/')[1];
-                Console.WriteLine(log_file_name);//for debug...
-
-                //一旦ファイル削除(上書きする為)
-                if (File.Exists(log_file_name))
-                {
-                    File.Delete(log_file_name);
-                }
-                //ファイル保存
-                rds.get_log_data(current_rds_log.download_log_file_name, log_file_name, current_rds_log.dt_timestamp);
-
-                int percentage = i * 100 / n; // 進捗率
-                progress.Report(percentage);
-
-            });
-        }
-        // 進捗を表示するメソッド（これはUIスレッドで呼び出される）
-        private void ShowProgress(int percent)
-        {
-            progressBar1.Value = percent;
         }
     }
 }
