@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Akira345")]
 [assembly: AssemblyProduct("RDS_Log_Downloader")]
-[assembly: AssemblyCopyright("Copyright ©  2017 Akira345")]
+[assembly: AssemblyCopyright("Copyright ©  2022 Akira345")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -15,26 +15,32 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_076DF63C3000770FD7894D5CCA0D249F"
+        "OwnerKey" = "8:_97C6472869163E7C58ECABAF8276C7B5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3B3748500A80403F89337A1D8408BB7B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_5BDC28294AED899640FC8400B0A78B89"
+        "MsmKey" = "8:_4E559F235575F0757DD4F7B6C2696341"
         "OwnerKey" = "8:_3B3748500A80403F89337A1D8408BB7B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A5C69B7F543D89F1B566D58BEC21B011"
+        "MsmKey" = "8:_97C6472869163E7C58ECABAF8276C7B5"
         "OwnerKey" = "8:_3B3748500A80403F89337A1D8408BB7B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A5C69B7F543D89F1B566D58BEC21B011"
-        "OwnerKey" = "8:_5BDC28294AED899640FC8400B0A78B89"
+        "MsmKey" = "8:_97C6472869163E7C58ECABAF8276C7B5"
+        "OwnerKey" = "8:_F99BEB8357945D53AF34A00EF400284A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -45,32 +51,38 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_FA3E48697328D7B6C9ADF43FC0232CE2"
+        "MsmKey" = "8:_F99BEB8357945D53AF34A00EF400284A"
         "OwnerKey" = "8:_3B3748500A80403F89337A1D8408BB7B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FA3E48697328D7B6C9ADF43FC0232CE2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_3B3748500A80403F89337A1D8408BB7B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5BDC28294AED899640FC8400B0A78B89"
+        "OwnerKey" = "8:_F99BEB8357945D53AF34A00EF400284A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A5C69B7F543D89F1B566D58BEC21B011"
+        "OwnerKey" = "8:_97C6472869163E7C58ECABAF8276C7B5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_076DF63C3000770FD7894D5CCA0D249F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4E559F235575F0757DD4F7B6C2696341"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -91,6 +103,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.8"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.8 (x86 および x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.8"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -107,6 +135,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.8"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.8 (x86 および x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.8"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -128,7 +172,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.6.1"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.8"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=671728"
                 }
@@ -136,20 +180,20 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5BDC28294AED899640FC8400B0A78B89"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_076DF63C3000770FD7894D5CCA0D249F"
             {
             "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AWSSDK.RDS, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_5BDC28294AED899640FC8400B0A78B89"
+                    "_076DF63C3000770FD7894D5CCA0D249F"
                     {
-                    "Name" = "8:AWSSDK.RDS.dll"
+                    "Name" = "8:System.Net.Http.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:AWSSDK.RDS.dll"
+            "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9A6E2CC344A7424483EC871239A8C21E"
@@ -167,14 +211,45 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A5C69B7F543D89F1B566D58BEC21B011"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4E559F235575F0757DD4F7B6C2696341"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+                "ScatterAssemblies"
+                {
+                    "_4E559F235575F0757DD4F7B6C2696341"
+                    {
+                    "Name" = "8:System.Net.Http.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Net.Http.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_9A6E2CC344A7424483EC871239A8C21E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_97C6472869163E7C58ECABAF8276C7B5"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_A5C69B7F543D89F1B566D58BEC21B011"
+                    "_97C6472869163E7C58ECABAF8276C7B5"
                     {
                     "Name" = "8:AWSSDK.Core.dll"
                     "Attributes" = "3:512"
@@ -218,20 +293,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FA3E48697328D7B6C9ADF43FC0232CE2"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F99BEB8357945D53AF34A00EF400284A"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+            "AssemblyAsmDisplayName" = "8:AWSSDK.RDS, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_FA3E48697328D7B6C9ADF43FC0232CE2"
+                    "_F99BEB8357945D53AF34A00EF400284A"
                     {
-                    "Name" = "8:System.Net.Http.dll"
+                    "Name" = "8:AWSSDK.RDS.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.Net.Http.dll"
+            "SourcePath" = "8:AWSSDK.RDS.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9A6E2CC344A7424483EC871239A8C21E"
@@ -317,7 +392,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:RDS Log Downloader"
         "ProductCode" = "8:{7B69E8C1-20C8-4BA2-86E0-BEC8F6FBBB8B}"
-        "PackageCode" = "8:{1F6AD7D1-378C-46E7-9105-2FA53D0828B8}"
+        "PackageCode" = "8:{B795D948-24A5-4CDA-BDF1-53C03EDC122E}"
         "UpgradeCode" = "8:{4D5CCC45-3549-449F-BD25-7269A0DEBE43}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

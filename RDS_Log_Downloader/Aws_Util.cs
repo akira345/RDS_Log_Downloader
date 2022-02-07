@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Amazon;
 using Amazon.RDS;
 using Amazon.RDS.Model;
-using System.IO;
 using Amazon.Runtime;
-using Amazon;
+using System;
+using System.IO;
 
 namespace RDS_Log_Downloader
 {

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Amazon.Runtime;
+using Amazon.Runtime.CredentialManagement;
+using System;
 using System.IO;
 using System.Windows.Forms;
-using Amazon.Runtime;
-using Amazon.Runtime.CredentialManagement;
 
 namespace RDS_Log_Downloader
 {
