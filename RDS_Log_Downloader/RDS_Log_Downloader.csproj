@@ -134,7 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AWSSDK.RDS">
-      <Version>3.7.306.6</Version>
+      <Version>3.7.313.2</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
